@@ -11,9 +11,13 @@
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
           <p class="card-text">{{ post.rate }}</p>
+            {% for hashtag in post.hashtags.all %}
+                <a href="#" class="btn btn-primary">#{{ hashtag.title }}</a>
+            {% endfor %}
           <a href="#" class="btn btn-primary">More</a>
         </div>
       </div>
     {% endfor %}
+
         
 {% endblock %}

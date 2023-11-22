@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main_view),
     path('posts/', views.posts_view),
+    path('hashtags/', views.hashtags_view)
 ]
