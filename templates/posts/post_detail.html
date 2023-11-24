@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h1>
+        Post detail
+    </h1>
+
+    <h2>
+    {{ post.title }} {{ post.rate }}
+    </h2>
+
+    <p>
+    {{ post.content }}
+    </p>
+
+    <img src="/media/{{ post.image }}" width="500">
+
+    {% for hashtag in post.hashtags.all %}
+        <a href="#" class="btn btn-primary">#{{ hashtag }}</a>
+    {% endfor %}
+
+    <h2>
+    Dates:
+    </h2>
+    <p>Created: {{ post.created_at }}</p>
+    <p>Updated: {{ post.updated_at }}</p>
+
+    <h1>Comments:</h1>
+    {% for comment in post.comments.all %}
+        <p>{{ comment.text }}</p>
+    {% endfor %}
+
+{% endblock %}
