@@ -9,6 +9,10 @@ class HashTag(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Хештег"
+        verbose_name_plural = "Хештеги"
+
 
 class Post(models.Model):
     image = models.ImageField(upload_to='posts', null=True, blank=True)
@@ -26,6 +30,10 @@ class Post(models.Model):
     def __str__(self) -> str:
         return f"{self.id} {self.title}"
 
+    class Meta:
+        verbose_name = "Пост"
+        verbose_name_plural = "Посты"
+
 
 class Comment(models.Model):
     post = models.ForeignKey(
@@ -36,3 +44,6 @@ class Comment(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Коментарии"
+        verbose_name_plural = "Коментарий"

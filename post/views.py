@@ -1,6 +1,8 @@
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, render, redirect
 
 from post.models import Post, HashTag, Comment
+from post.forms import PostCreateForm, PostCreateForm2
+
 
 # CBV - Class Based View
 # FBV - Function Based View
@@ -55,3 +57,22 @@ def hashtags_view(request):
             'posts/hashtags.html',
             context=context
         )
+
+
+def post_create(request):
+    if request.method == 'GET':
+        context = {
+            "form": PostCreateForm
+        }
+        return render(request, 'posts/create.html', context)
+    if request.method == 'POST':
+        form = PostCreateForm2(request.POST, request.FILES)
+        if form.is_valid():
+            Post.objects.create(**form.cleaned_data)
+            return redirect("/posts/")
+
+        context = {
+            "form": form
+        }
+
+        return render(request, 'posts/create.html', context)
