@@ -17,6 +17,7 @@ def main_view(request):
 
 def posts_view(request):
     if request.method == 'GET':
+        print(request.user)
         posts = Post.objects.all()  # QuerySet
         # SELECT * FROM post_post;
 

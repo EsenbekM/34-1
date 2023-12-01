@@ -47,3 +47,14 @@ class Comment(models.Model):
     class Meta:
         verbose_name = "Коментарии"
         verbose_name_plural = "Коментарий"
+
+
+class Category(models.Model):
+    parent = models.ForeignKey(
+        'self', null=True, blank=True,
+        on_delete=models.SET_NULL
+    )
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
