@@ -5,6 +5,16 @@
     Posts
 </h1>
 
+  <form action="/posts/" method="GET">
+    <input type="text" name="search" placeholder="Search">
+    <input type="submit" value="Search">
+  </form>
+
+  <a href="?order=title" method="GET">Title</a>
+  <a href="?order=-title" method="GET">-Title</a>
+  <a href="?order=created_at" method="GET">Date</a>
+  <a href="?order=-created_at" method="GET">-Date</a>
+
     {% for post in posts %}
     <div class="card" style="width: 18rem;">
         <img src="/media/{{ post.image }}" class="card-img-top" alt="...">
@@ -19,5 +29,9 @@
       </div>
     {% endfor %}
 
-        
+    <div style="margin;">
+    {% for page in pages %}
+        <a href="?page={{ page }}" method="GET"><h1>{{ page }}</h1></a>
+    {% endfor %}
+  </div>
 {% endblock %}
