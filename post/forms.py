@@ -30,3 +30,19 @@ class PostCreateForm2(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'image', 'rate']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        title = cleaned_data.get('title')
+        if len(title) < 10:
+            raise forms.ValidationError("Title to short!")
+        return cleaned_data
+
+    def clean_content(self):
+        cleaned_data = super().clean()
+        content = cleaned_data.get('content')
+        if len(content) < 40:
+            raise forms.ValidationError("content to short!")
+        if not content:
+            raise forms.ValidationError("content is required!")
+        return cleaned_data
